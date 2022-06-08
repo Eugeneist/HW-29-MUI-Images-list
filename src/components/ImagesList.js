@@ -67,12 +67,11 @@ const ImagesList = () => {
           <DialogTitle>{"This image information"}</DialogTitle>
           <DialogContent>
             <DialogContentText>
-              <>{`Author: ${imageParams.author}`}</>
-              <>{`Original width: ${imageParams.width}px`}</>
-              <>{`Original height: ${imageParams.height}px`}</>
+              <p>{`Author: ${imageParams.author}`}</p>
+              <p>{`Original width: ${imageParams.width}px`}</p>
+              <p>{`Original height: ${imageParams.height}px`}</p>
             </DialogContentText>
           </DialogContent>
-          ;
           <DialogActions>
             <Button onClick={handleClose}>OK</Button>
           </DialogActions>
