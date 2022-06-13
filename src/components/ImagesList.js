@@ -5,19 +5,15 @@ import Box from "@mui/material/Box";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import Button from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogActions from "@mui/material/DialogActions";
-import DialogTitle from "@mui/material/DialogTitle";
 import CircularProgress from "@mui/material/CircularProgress";
+import Modal from "./Modal";
 
 const ImagesList = () => {
   const [images, setImages] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [open, setOpen] = useState(false);
-  const [imageParams, setImageParams] = useState([]);
+  const [imageParams, setImageParams] = useState({});
 
   useEffect(() => {
     setLoading(true);
@@ -33,12 +29,10 @@ const ImagesList = () => {
 
   const handleOpen = (image) => () => {
     setImageParams(image);
-    console.log(imageParams);
     setOpen(true);
   };
 
   const handleClose = () => {
-    // setImageParams([]);
     setOpen(false);
   };
 
@@ -63,19 +57,7 @@ const ImagesList = () => {
           ))}
         </ImageList>
 
-        <Dialog open={open} onClose={handleClose} params={imageParams}>
-          <DialogTitle>{"This image information"}</DialogTitle>
-          <DialogContent>
-            <DialogContentText>
-              <p>{`Author: ${imageParams.author}`}</p>
-              <p>{`Original width: ${imageParams.width}px`}</p>
-              <p>{`Original height: ${imageParams.height}px`}</p>
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleClose}>OK</Button>
-          </DialogActions>
-        </Dialog>
+        <Modal open={open} onClose={handleClose} params={imageParams} />
       </Box>
 
       <Box sx={{ p: 2, display: "flex", justifyContent: "center" }}>
